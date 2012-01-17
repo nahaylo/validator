@@ -1,0 +1,16 @@
+en:
+  errors:
+    messages:
+      domain:
+        invalid: "invalid domain name"
+        length: "full domain name is limited to 255 octets"
+        label_length: "length of any one label is limited to between 1 and 63 octets"
+      ip_address:
+        invalid:
+          general: "invalid ip address"
+          ipv4: "invalid IPv4 address"
+          ipv6: "invalid IPv6 address"
+        prefix_disallowed: "prefix is not allowed"
+        prefix_invalid:
+          ipv4: "prefix must be in range 1..32"
+          ipv6: "prefix must be in range 1..128"
