@@ -48,14 +48,14 @@ Localization Tricks
 -------------------
 To customize error message, you can use { :message => "your custom message" } or simple use Rails localization en.yml file, for instance:
 
-   en:
-     errors:
-       messages:
-         domain:
-           length: "your custom length error message"
-        ip_address:
-          invalid:
-            general: "your custom invalid ip address error message"
+    en:
+      errors:
+        messages:
+          domain:
+            length: "your custom length error message"
+         ip_address:
+           invalid:
+             general: "your custom invalid ip address error message"
 
 
 Copyright
