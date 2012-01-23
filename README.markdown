@@ -3,10 +3,14 @@ Active Model Validator
 
 This is a ActiveModel validators for domains and ip addresses.
 
-Example
+Installation
+------------
+gem install validator
+
+Usage
 -------
 
-The following model uses `ActiveModel::Validations::PresenceValidator` and `ActiveRecord::Validations::UniquenessValidator` to ensure the presence and uniqueness of the user’s email attribute. The third line uses `EmailValidator` to check that the email address is valid.
+In your models, the gem provides new validators like :domain or :ip_address
 
     class Model < ActiveRecord::Base
       validates :domain_name, :domain => true
@@ -38,6 +42,21 @@ Ip Address Validator
     validates :ip, :ip_address => { :only => :ipv6 }
 
     validates :ip, :ip_address => { :message => "custom message" }
+
+
+Localization Tricks
+-------------------
+To customize error message, you can use { :message => "your custom message" } or simple use Rails localization en.yml file, for instance:
+
+   en:
+     errors:
+       messages:
+         domain:
+           length: "your custom length error message"
+        ip_address:
+          invalid:
+            general: "your custom invalid ip address error message"
+
 
 Copyright
 ---------
