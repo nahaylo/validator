@@ -5,7 +5,7 @@ This is a ActiveModel validators for domains and ip addresses.
 
 Installation
 ------------
-gem install validator
+    gem install validator
 
 Usage
 -------
