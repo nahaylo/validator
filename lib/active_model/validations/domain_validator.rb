@@ -1,30 +1,27 @@
 module ActiveModel
   module Validations
     class DomainValidator < ActiveModel::EachValidator
-      # Call `#initialize` on the superclass, adding a default
-      # `:allow_nil => false` option.
       def initialize(options)
-        super(options.reverse_merge(:allow_nil => false))
+        options[:length] ||= ::Validator::Domain::LENGTH
+        options[:label_length] ||= ::Validator::Domain::LABEL_LENGTH
+
+        super(options)
       end
 
       def validate_each(record, attr_name, value)
-        return if options[:allow_nil] && value.nil?
-
         # do not validate if value is empty
         return if value.nil?
 
         @validator = ::Validator::Domain.new(value)
 
         # max domain length
-        unless @validator.valid_by_length?
+        unless @validator.valid_by_length?(options[:length])
           record.errors.add(attr_name, :'domain.length', options)
-          #return
         end
 
         # label is limited to between 1 and 63 octets
-        unless @validator.valid_by_label_length?
+        unless @validator.valid_by_label_length?(options[:label_length])
           record.errors.add(attr_name, :'domain.label_length', options)
-          #return
         end
 
         # skip proceeding validation if errors

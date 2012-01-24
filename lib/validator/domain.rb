@@ -7,12 +7,12 @@ module Validator
       @value = value
     end
 
-    def valid_by_length?(length = LENGTH)
-      @value.length <= length
+    def valid_by_length?(length = nil)
+      @value.length <= (length || LENGTH)
     end
 
-    def valid_by_label_length?(label_length = LABEL_LENGTH)
-      !(@value.split(".").find{|f| f.length > label_length and f.length > 1 })
+    def valid_by_label_length?(label_length = nil)
+      !(@value.split(".").find{|f| f.length > (label_length || LABEL_LENGTH) and f.length > 1 })
     end
 
     def valid_by_regexp?

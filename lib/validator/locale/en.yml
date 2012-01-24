@@ -3,8 +3,8 @@ en:
     messages:
       domain:
         invalid: "invalid domain name"
-        length: "domain name length is limited to 255 characters"
-        label_length: "each label length is limited to 63 characters"
+        length: "domain name length is limited to %{length} characters"
+        label_length: "each label length is limited to %{label_length} characters"
       ip_address:
         invalid:
           general: "invalid ip address"

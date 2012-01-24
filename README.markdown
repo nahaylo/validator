@@ -25,6 +25,9 @@ Domain Validator
 
     validates :domain_name, :domain => {:message => 'custom message'}
 
+    # custom full domain length and label length
+    validates :domain_name, :domain => { :length => 200, :label_length => 60 }
+
 
 Ip Address Validator
 --------------------

@@ -6,6 +6,7 @@ module ActiveModel
     describe DomainValidator do
       let(:domain) { TestDomain.new }
       let(:domain_with_message) { TestDomainWithMessage.new }
+      let(:domain_with_length) { TestDomainWithLength.new }
 
       describe "validations" do
         # for blank domain
@@ -52,22 +53,27 @@ module ActiveModel
             end
           end
 
+          it "should be valid for custom length and label length" do
+            domain_with_length.domain_name = "valid-domain.com"
+            domain_with_length.should be_valid
+          end
+
         end
 
         describe 'invalid' do
           it {
             domain.domain_name = "not_valid_because_of_length_#{'w'*230}.com"
-            domain.should have_errors_on(:domain_name, 2).with_message(I18n.t(:'errors.messages.domain.length'))
+            domain.should have_errors_on(:domain_name, 2).with_message(I18n.t(:'errors.messages.domain.length', :length => 255))
           }
 
           it {
             domain.domain_name = "not_valid_because_of_length_of_label#{'w'*230}.com"
-            domain.should have_errors_on(:domain_name, 2).with_message(I18n.t(:'errors.messages.domain.label_length'))
+            domain.should have_errors_on(:domain_name, 2).with_message(I18n.t(:'errors.messages.domain.label_length', :label_length => 63))
           }
 
           it {
             domain.domain_name = "#{'w'*64}.com"
-            domain.should have_errors_on(:domain_name).with_message(I18n.t(:'errors.messages.domain.label_length'))
+            domain.should have_errors_on(:domain_name).with_message(I18n.t(:'errors.messages.domain.label_length', :label_length => 63))
           }
 
           it "should be invalid if consists of special symbols (&, _, {, ], *, etc)" do
@@ -95,6 +101,18 @@ module ActiveModel
               domain.domain_name = "domain.a#{tld}"
               domain.should have_errors_on(:domain_name)
             end
+          end
+
+          context 'custom full domain length and label length' do
+            it {
+              domain_with_length.domain_name = "#{'w'*61}.com"
+              domain_with_length.should have_errors_on(:domain_name).with_message(I18n.t(:'errors.messages.domain.label_length', :label_length => 60))
+            }
+
+            it {
+              domain_with_length.domain_name = "not_valid_because_of_length_#{'w'*190}.com"
+              domain_with_length.should have_errors_on(:domain_name, 2).with_message(I18n.t(:'errors.messages.domain.length', :length => 200))
+            }
           end
 
         end

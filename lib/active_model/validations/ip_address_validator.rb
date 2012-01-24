@@ -1,15 +1,7 @@
 module ActiveModel
   module Validations
     class IpAddressValidator < ActiveModel::EachValidator
-      # Call `#initialize` on the superclass, adding a default
-      # `:allow_nil => false` option.
-      def initialize(options)
-        super(options.reverse_merge(:allow_nil => false))
-      end
-
       def validate_each(record, attr_name, value)
-        return if options[:allow_nil] && value.nil?
-
         # do not validate if value is empty
         return if value.nil?
 
@@ -44,7 +36,7 @@ module ActiveModel
     end
 
     module HelperMethods
-      #   class Dns < ActiveRecord::Base
+      #   class Ip < ActiveRecord::Base
       #     validates_ip_address_of :ip
       #   end
       #
