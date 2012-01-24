@@ -59,6 +59,15 @@ To customize error message, you can use { :message => "your custom message" } or
          ip_address:
            invalid:
              general: "your custom invalid ip address error message"
+      activemodel:
+        errors:
+          messages:
+            domain:
+              invalid: "custom error message only for activemodel"
+           models:
+             your_model:
+               domain:
+                 invalid: "custom error message for YourDomain model"
 
 
 Copyright
