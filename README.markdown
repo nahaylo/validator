@@ -1,4 +1,4 @@
-Active Model Validator
+Active Model Validator [![Travis](https://secure.travis-ci.org/nahaylo/validator.png)](http://travis-ci.org/nahaylo/validator)
 ============================
 
 This is a ActiveModel validators for domains and ip addresses.
