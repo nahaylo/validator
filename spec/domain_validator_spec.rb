@@ -62,12 +62,12 @@ module ActiveModel
 
         describe 'invalid' do
           it {
-            domain.domain_name = "not_valid_because_of_length_#{'w'*230}.com"
+            domain.domain_name = "not-valid-because-of-length-#{'w'*230}.com"
             domain.should have_errors_on(:domain_name, 2).with_message(I18n.t(:'errors.messages.domain.length', :length => 255))
           }
 
           it {
-            domain.domain_name = "not_valid_because_of_length_of_label#{'w'*230}.com"
+            domain.domain_name = "not-valid-because-of-length-of-label#{'w'*230}.com"
             domain.should have_errors_on(:domain_name, 2).with_message(I18n.t(:'errors.messages.domain.label_length', :label_length => 63))
           }
 

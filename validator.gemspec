@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = Validator::VERSION
   s.authors     = ["Vitaliy Nahaylo"]
   s.email       = ["nahaylo@gmail.com"]
-  s.homepage    = ""
-  s.summary     = "Validator"
-  s.description = "Validators for domains and ip addresses"
+  s.homepage    = "https://github.com/nahaylo/validator"
+  s.summary     = "ActiveModel validations for domains, ip addresses and email addresses with fully localization support."
+  s.description = "ActiveModel validations for domains, ip addresses and email addresses with fully localization support."
 
   s.rubyforge_project = "validator"
 
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "ipaddress"
-  s.add_runtime_dependency 'activemodel', ['>= 3.0.0', '< 3.2.0']
-  s.add_development_dependency 'activesupport', ['>= 3.0.0', '< 3.2.0']
+  s.add_runtime_dependency 'activemodel', '>= 3.0.0'
+  s.add_development_dependency 'activesupport', '>= 3.0.0'
   s.add_development_dependency "rspec"
 end

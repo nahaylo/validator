@@ -14,3 +14,10 @@ en:
         prefix_invalid:
           ipv4: "prefix must be in range 1..32"
           ipv6: "prefix must be in range 1..128"
+      email:
+        invalid: "invalid email address"
+        local_length: "local part of email address is limited to %{local_length} characters"
+        domain:
+          invalid: "invalid domain name"
+          length: "domain name length is limited to %{domain_length} characters"
+          label_length: "domain label length is limited to %{domain_label_length} characters"
