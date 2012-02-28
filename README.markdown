@@ -1,7 +1,7 @@
 Active Model Validator [![Travis](https://secure.travis-ci.org/nahaylo/validator.png)](http://travis-ci.org/nahaylo/validator)
 ============================
 
-This is a ActiveModel validators for domains, ip addresses and email addresses.
+This is a ActiveModel validators for domains (including TLDs), ip addresses and email addresses.
 
 Installation
 ------------
@@ -22,12 +22,16 @@ In your models, the gem provides new validators like :domain, :ip_address or :em
 Domain Validator
 ----------------
 
+    # validate domain name by full length, label length, TLD existing
     validates :domain_name, :domain => true
 
     validates :domain_name, :domain => { :message => 'custom message' }
 
     # custom full domain and label length
     validates :domain_name, :domain => { :length => 200, :label_length => 60 }
+
+    # skip TLD validation
+    validates :domain_name, :domain => { :check_tld => false }
 
 
 Ip Address Validator

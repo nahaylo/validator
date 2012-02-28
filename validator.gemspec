@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Vitaliy Nahaylo"]
   s.email       = ["nahaylo@gmail.com"]
   s.homepage    = "https://github.com/nahaylo/validator"
-  s.summary     = "ActiveModel validations for domains, ip addresses and email addresses with fully localization support."
-  s.description = "ActiveModel validations for domains, ip addresses and email addresses with fully localization support."
+  s.summary     = "ActiveModel validations for domains (including TLDs), ip addresses and email addresses with fully localization support."
+  s.description = "ActiveModel validations for domains (including TLDs), ip addresses and email addresses with fully localization support."
 
   s.rubyforge_project = "validator"
 

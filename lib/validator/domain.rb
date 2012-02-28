@@ -1,5 +1,7 @@
 module Validator
   class Domain
+    autoload :Tld, 'validator/domain/tld'
+
     LENGTH = 255
     LABEL_LENGTH = 63
     

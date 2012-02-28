@@ -2,7 +2,7 @@ module ActiveModel
   module Validations
     class DomainValidator < ActiveModel::EachValidator
       def initialize(options)
-        options[:length] ||= ::Validator::Domain::LENGTH
+        options[:length]       ||= ::Validator::Domain::LENGTH
         options[:label_length] ||= ::Validator::Domain::LABEL_LENGTH
 
         super(options)
@@ -29,6 +29,15 @@ module ActiveModel
 
         unless @validator.valid_by_regexp?
           record.errors.add(attr_name, :'domain.invalid', options)
+          return
+        end
+
+        # if check_tld = true - check if TLD exists
+        if options[:check_tld] != false
+          tld = value.split('.').last.upcase
+          unless ::Validator::Domain::Tld.exists?(tld)
+            record.errors.add(attr_name, :'domain.unknown_tld', options)
+          end
         end
       end
     end

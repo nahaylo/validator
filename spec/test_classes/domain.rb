@@ -15,3 +15,7 @@ end
 class TestDomainWithMessage < BaseTestDomain
   validates :domain_name, :domain => { :message => 'invalid' }
 end
+
+class TestDomainWithoutTld < BaseTestDomain
+  validates :domain_name, :domain => { :check_tld  => false }
+end

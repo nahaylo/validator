@@ -3,6 +3,7 @@ en:
     messages:
       domain:
         invalid: "invalid domain name"
+        unknown_tld: "consists of unknown TLD"
         length: "domain name length is limited to %{length} characters"
         label_length: "each label length is limited to %{label_length} characters"
       ip_address:

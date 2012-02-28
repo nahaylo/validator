@@ -7,6 +7,7 @@ module ActiveModel
       let(:domain) { TestDomain.new }
       let(:domain_with_message) { TestDomainWithMessage.new }
       let(:domain_with_length) { TestDomainWithLength.new }
+      let(:domain_without_tld) { TestDomainWithoutTld.new }
 
       describe "validations" do
         # for blank domain
@@ -47,7 +48,7 @@ module ActiveModel
           end
 
           it "should be valid if TLD length is between 2 and 6" do
-            %w(ab abcabc).each do |tld|
+            %w(ua museum).each do |tld|
               domain.domain_name = "domain.#{tld}"
               domain.should_not have_errors_on(:domain_name)
             end
@@ -56,6 +57,11 @@ module ActiveModel
           it "should be valid for custom length and label length" do
             domain_with_length.domain_name = "valid-domain.com"
             domain_with_length.should be_valid
+          end
+
+          it "should be valid with unknown TLD" do
+            domain_without_tld.domain_name = "valid-domain.abcabc"
+            domain_without_tld.should be_valid      
           end
 
         end
@@ -92,8 +98,13 @@ module ActiveModel
           end
 
           it "should not be valid with TLD length more than 6" do
-            domain.domain_name = "domain.abcabcd"
-            domain.should have_errors_on(:domain_name)
+            domain_without_tld.domain_name = "domain.abcabcd"
+            domain_without_tld.should have_errors_on(:domain_name)
+          end
+
+          it "should not be valid with unknown TLD" do
+            domain.domain_name = "domain.abcabc"
+            domain.should have_errors_on(:domain_name).with_message(I18n.t(:'errors.messages.domain.unknown_tld'))
           end
 
           it "should not be valid if TLD consists of numbers or special symbols (&, _, {, ], *, etc)" do
